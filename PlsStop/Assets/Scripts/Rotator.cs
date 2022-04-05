@@ -24,13 +24,13 @@ public class Rotator : MonoBehaviour
     void Update()
     {
         //ROTATION
-        //22,5 67,5
-
         Vector3 worldMousePosition = GetWorldMousePosition();
 
         dif = worldMousePosition - transform.position;
         float radians = Mathf.Atan2(dif.y, dif.x);
         transform.localRotation = Quaternion.Euler(0f, 0f, radians * Mathf.Rad2Deg);
+
+        //LIMIT ROTATION
         if (transform.eulerAngles.z > maxRotation)
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, maxRotation);
