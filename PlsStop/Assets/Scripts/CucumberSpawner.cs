@@ -6,18 +6,37 @@ public class CucumberSpawner : MonoBehaviour
 {
     SpawnManager Manager;
     [SerializeField] GameObject[] spawnPoints;
+    GameObject[] cucumbers;
+    float elapsedTime;
     private void Start()
     {
-      
-        Manager = SpawnManager.instance; 
+        cucumbers = new GameObject[spawnPoints.Length];
+        Manager = SpawnManager.instance;
+        Spawn();
+       
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        foreach (GameObject spawnPoint in spawnPoints)
+        if (elapsedTime >= 2f)
         {
-           
-                Manager.SpawnFromPool("Cucumber", spawnPoint.transform.position);
-                
+            Spawn();
+            elapsedTime = 0f;
         }
+        elapsedTime += Time.deltaTime;
     }
+    private void Spawn()
+    {
+        for (int i = 0; i < cucumbers.Length; i++)
+        {
+            if (cucumbers[i]==null)
+            {
+                GameObject cucumber = Manager.SpawnFromPool("Cucumber", spawnPoints[i].transform.position);
+                cucumbers[i] = cucumber;
+                return;
+            }
+
+        }
+
+    }
+      
 }

@@ -47,9 +47,10 @@ public class SpawnManager : MonoBehaviour
         {
             pooledObj.OnObjectSpawned();
         }
-
-
-        poolDictionary[tag].Enqueue(objectToSpawn);
         return objectToSpawn;
+    }
+    public void ReleaseObject(string tag, GameObject objects)
+    {
+        poolDictionary[tag].Enqueue(objects);
     }
 }

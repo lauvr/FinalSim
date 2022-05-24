@@ -660,7 +660,7 @@ MonoBehaviour:
   pools:
   - tag: Cucumber
     Prefab: {fileID: 3469983343481466138, guid: 989e410ef6c954242b2d8b0e967d05ca, type: 3}
-    size: 10000
+    size: 6
 --- !u!114 &1009570149
 MonoBehaviour:
   m_ObjectHideFlags: 0
