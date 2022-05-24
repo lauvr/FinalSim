@@ -11,7 +11,7 @@ public class Restart : MonoBehaviour
     {
         cat.health = healthAfterRetry;
         canvas.timerValue = 0;
-        canvas.lastValue = 0;
+        
         GameState currentGameState = GameStateManager.Instance.CurrentGameState;
         currentGameState = GameState.Gameplay;
         GameStateManager.Instance.SetState(currentGameState);

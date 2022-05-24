@@ -7,7 +7,7 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
-    public float timerValue,lastValue,highScore;
+    public float timerValue,lastValue;
     private float actualHScore;
     [SerializeField] private float timeBeforeIncreasing,timeHelper;
     [SerializeField] PlayerCharcater playerHealthScript;
@@ -31,10 +31,11 @@ public class UIController : MonoBehaviour
         }
         if (playerHealthScript.health <= 0)
         {
-            actualHScore = lastValue;
+            
             OnDeath();
             if (lastValue >= actualHScore)
             {
+                actualHScore = lastValue;
                 highScoreh.text = "HighScore: " + actualHScore;
             }
         }
