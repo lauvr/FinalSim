@@ -36,6 +36,14 @@ public class CucumberSpawner : MonoBehaviour
             }
 
         }
+        for (int i = 0; i < cucumbers.Length; i++)
+        {
+            if (cucumbers[i] != null)
+            {
+                Manager.ReleaseObject("Cucumber", cucumbers[i]);
+                cucumbers[i] = null;
+            }
+        }
 
     }
       
