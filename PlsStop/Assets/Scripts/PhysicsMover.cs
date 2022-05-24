@@ -16,10 +16,16 @@ public class PhysicsMover : MonoBehaviour
 	public Vector3 objPosition;
 
 	public float distance;
-
-
-	// Update is called otnce per frame
-	void FixedUpdate()
+    private void Awake()
+    {
+        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
+    }
+    private void OnDestroy()
+    {
+        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+    }
+    // Update is called otnce per frame
+    void FixedUpdate()
 	{
 		objPosition = this.transform.position;
 
@@ -58,4 +64,8 @@ public class PhysicsMover : MonoBehaviour
 			transform.position = transform.position + displacement;
         }
 	}
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
+    }
 }

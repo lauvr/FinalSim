@@ -8,6 +8,14 @@ public class CucumberSpawner : MonoBehaviour
     [SerializeField] GameObject[] spawnPoints;
     GameObject[] cucumbers;
     float elapsedTime;
+    private void Awake()
+    {
+        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
+    }
+    private void OnDestroy()
+    {
+        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+    }
     private void Start()
     {
         cucumbers = new GameObject[spawnPoints.Length];
@@ -47,4 +55,8 @@ public class CucumberSpawner : MonoBehaviour
 
     }
       
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
+    }
 }

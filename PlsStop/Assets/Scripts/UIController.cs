@@ -1,0 +1,63 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+
+public class UIController : MonoBehaviour
+{
+    public float timerValue,lastValue,highScore;
+    private float actualHScore;
+    [SerializeField] private float timeBeforeIncreasing,timeHelper;
+    [SerializeField] PlayerCharcater playerHealthScript;
+    [SerializeField]private TextMeshProUGUI timer,highScoreh;
+    private void Awake()
+    {
+        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
+    }
+    private void OnDestroy()
+    {
+        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Time.time > timeHelper)
+        {
+            timeHelper = Time.time + timeBeforeIncreasing;
+            IncrementTime();
+        }
+        if (playerHealthScript.health <= 0)
+        {
+            actualHScore = lastValue;
+            OnDeath();
+            if (lastValue >= actualHScore)
+            {
+                highScoreh.text = "HighScore: " + actualHScore;
+            }
+        }
+    }
+    void IncrementTime()
+    {
+        timerValue ++;
+        lastValue = timerValue;
+        timer.text = "Score: " + timerValue;
+    }
+    void ChangeScore()
+    {
+        
+    }
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
+    }
+    private void OnDeath()
+    {
+        GameState currentGameState = GameStateManager.Instance.CurrentGameState;
+        currentGameState = GameState.Lost;
+        GameStateManager.Instance.SetState(currentGameState);
+
+    }
+}

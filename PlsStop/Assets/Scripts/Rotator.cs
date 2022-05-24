@@ -7,15 +7,17 @@ public class Rotator : MonoBehaviour
     bool isAnimating = false;
     float prevX = 1;
     float degrees;
+
+    private void Awake()
+    {
+        GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;     
+    }
+    private void OnDestroy()
+    {
+        GameStateManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+    }
     private void Update()
     {
-        //if (isAnimating)
-        //{
-        //    Debug.Log("<color=green>Animating</color>");
-        //    return;
-        //}
-
-        // Rotation
         Vector3 worldMousePosition = GetWorldMousePosition();
         Vector3 diff = worldMousePosition - transform.position;
         degrees = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
@@ -54,5 +56,9 @@ public class Rotator : MonoBehaviour
         Debug.DrawLine(Vector3.zero, transform.position, Color.cyan);
         mousePosition.z = 0;
         return mousePosition;
+    }
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        enabled = newGameState == GameState.Gameplay;
     }
 }
