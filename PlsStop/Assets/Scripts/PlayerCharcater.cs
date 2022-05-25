@@ -6,6 +6,8 @@ public class PlayerCharcater : MonoBehaviour
 {
     public int health;
     private Collider2D catCollider;
+    public delegate void DeathEvent();
+    public static DeathEvent death;
     // Start is called before the first frame update
     private void Awake()
     {

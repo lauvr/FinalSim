@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f52090252f82e4027bedc740d39451ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c005a874e5b3646814349c8c09b4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upForce: 0.5
-  sideForce: 0.1
+  upForce: 1
+  sideForce: 2
 --- !u!50 &1807810068953671201
 Rigidbody2D:
   serializedVersion: 4
@@ -134,5 +134,5 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.3797361, y: 1.3797361}
   m_Direction: 0

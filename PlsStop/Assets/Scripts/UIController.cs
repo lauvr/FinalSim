@@ -12,6 +12,10 @@ public class UIController : MonoBehaviour
     [SerializeField] private float timeBeforeIncreasing,timeHelper;
     [SerializeField] PlayerCharcater playerHealthScript;
     [SerializeField]private TextMeshProUGUI timer,highScoreh;
+
+    [SerializeField]
+    private GameObject panelDeath;
+
     private void Awake()
     {
         GameStateManager.Instance.OnGameStateChanged += OnGameStateChanged;
@@ -60,5 +64,6 @@ public class UIController : MonoBehaviour
         currentGameState = GameState.Lost;
         GameStateManager.Instance.SetState(currentGameState);
 
+        panelDeath.SetActive(true);
     }
 }

@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class Pause : MonoBehaviour
 {
- 
-   public void MyPause()
-    {
-        GameState currentGameState = GameStateManager.Instance.CurrentGameState;
-        GameState newGameState = currentGameState == GameState.Gameplay
-        ? GameState.Paused
-        : GameState.Gameplay;
+    [SerializeField]
+    private GameObject panelPause;
 
-        GameStateManager.Instance.SetState(newGameState);
+    private void Start()
+    {
+        panelPause.SetActive(false);
     }
+
+    public void MyPause()
+   {
+        GameState newGameState = GameState.Paused;
+        GameStateManager.Instance.SetState(newGameState);
+        panelPause.SetActive(true);
+   }
+
+    public void ResumeBtn()
+    {
+        GameState newGameState = GameState.Gameplay;
+        GameStateManager.Instance.SetState(newGameState);
+        panelPause.SetActive(false);
+
+    }
+
 }

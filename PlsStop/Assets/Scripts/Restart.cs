@@ -7,7 +7,17 @@ public class Restart : MonoBehaviour
     [SerializeField] UIController canvas;
     [SerializeField] PlayerCharcater cat;
     [SerializeField] int healthAfterRetry;
-    public void myRestart()
+
+    [SerializeField]
+    private GameObject panelDeath;
+
+    private void Start()
+    {
+        panelDeath.SetActive(false);
+
+    }
+
+    public void myRestart(GameObject panel)
     {
         cat.health = healthAfterRetry;
         canvas.timerValue = 0;
@@ -15,5 +25,6 @@ public class Restart : MonoBehaviour
         GameState currentGameState = GameStateManager.Instance.CurrentGameState;
         currentGameState = GameState.Gameplay;
         GameStateManager.Instance.SetState(currentGameState);
+        panel.SetActive(false);
     }
 }

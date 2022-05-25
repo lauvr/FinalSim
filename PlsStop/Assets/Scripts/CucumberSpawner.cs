@@ -25,7 +25,7 @@ public class CucumberSpawner : MonoBehaviour
     }
     private void Update()
     {
-        if (elapsedTime >= 2f)
+        if (elapsedTime >= 1f)
         {
             Spawn();
             elapsedTime = 0f;
@@ -59,4 +59,13 @@ public class CucumberSpawner : MonoBehaviour
     {
         enabled = newGameState == GameState.Gameplay;
     }
+
+
+    //public void pauseCucumbres()
+    //{
+    //    foreach (var item in cucumbers)
+    //    {
+    //        item.SetActive(false);
+    //    }
+    //}
 }
