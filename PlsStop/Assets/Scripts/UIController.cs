@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour
 {
     public float timerValue,lastValue;
     private float actualHScore;
+    [SerializeField] AudioManager audios;
     [SerializeField] private float timeBeforeIncreasing,timeHelper;
     [SerializeField] PlayerCharcater playerHealthScript;
     [SerializeField]private TextMeshProUGUI timer,highScoreh;
@@ -63,7 +64,7 @@ public class UIController : MonoBehaviour
         GameState currentGameState = GameStateManager.Instance.CurrentGameState;
         currentGameState = GameState.Lost;
         GameStateManager.Instance.SetState(currentGameState);
-
+        audios.OnCatDeath();
         panelDeath.SetActive(true);
     }
 }

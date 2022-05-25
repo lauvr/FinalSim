@@ -5,6 +5,7 @@ using UnityEngine;
 public class CucumberSpawner : MonoBehaviour
 {
     SpawnManager Manager;
+    [SerializeField]AudioManager audios;
     [SerializeField] GameObject[] spawnPoints;
     GameObject[] cucumbers;
     float elapsedTime;
@@ -28,6 +29,7 @@ public class CucumberSpawner : MonoBehaviour
         if (elapsedTime >= 1f)
         {
             Spawn();
+            
             elapsedTime = 0f;
         }
         elapsedTime += Time.deltaTime;
@@ -40,7 +42,9 @@ public class CucumberSpawner : MonoBehaviour
             {
                 GameObject cucumber = Manager.SpawnFromPool("Cucumber", spawnPoints[i].transform.position);
                 cucumbers[i] = cucumber;
+                audios.OnCucumberspawned();
                 return;
+                
             }
 
         }
